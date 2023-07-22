@@ -1,6 +1,6 @@
 from logging import debug
 from flask import Flask, redirect,render_template,request, url_for
-app = Flask("__name__")
+app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template('index.html')
