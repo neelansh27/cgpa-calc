@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CGPA CALCULATOR</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <form method="post">
+    <div> <span>Number of Subjects:<span>
+        <input id="sub" type="range" min="2" max="13" value="2" step="1" />
+        <span id="sub-val">2</span>
+    </div>
+    <table border="1px" id="myTable">
+            <thead>
+                <td>S.no</td>
+                <td>Marks</td>
+                <td>Credits</td>
+            </thead>
+        <tbody id="info" >
+                <tr>
+                    <td>1</td>
+                    <td><input type="number" name="marks" value="" required></td>
+                    <td><input type="number" name="credits" value="" required></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="number" name="marks" value="" required></td>
+                    <td><input type="number" name="credits" value="" required></td>
+                </tr>
+            
+        </tbody>
+    </table>
+    <button type="submit">Submit</button>
+    </form>
+    <script>
+        const slider=document.getElementById("sub");
+        const sbox=document.getElementById("sub-val");
+        const tabody=document.getElementById("info")
+        const table=document.getElementById("myTable")
+
+        let spval= 2 ;
+        slider.value=2;
+        sbox.textContent=spval
+        let diff=spval-slider.value
+        slider.addEventListener('input',function(){
+            diff=spval-slider.value
+            if (diff<0){ // less rows
+                while (diff!=0){
+                     //table.innerHTML+=`
+                         //<tr>
+                             //<td>${++spval}</td>
+                             //<td><input type="number" name="marks" value="" required></td>
+                             //<td><input type="number" name="credits" value="" required></td>
+                         //</tr>
+                         //`
+                    const newRow=table.insertRow(-1);
+                    const c1=newRow.insertCell(0);
+                    const c2=newRow.insertCell(1);
+                    const c3=newRow.insertCell(2);
+                    const inputm= document.createElement('input');
+                    const inputc= document.createElement('input');
+;
+                    inputm.type='number';
+                    inputm.setAttribute('name',"marks");
+                    inputm.setAttribute('required',true);
+;
+                    inputc.type='number';
+                    inputc.setAttribute('name',"credits");
+                    inputc.setAttribute('required',true);
+                    c1.textContent= ++spval;
+                    c2.appendChild(inputm);
+                    c3.appendChild(inputc);
+                    diff++;
+                }
+            } else if (diff>0){ // excess rows
+                while (diff!=0){
+                    tabody.removeChild(tabody.lastElementChild)
+                    diff--
+                }
+                spval= slider.value
+            }
+            sbox.textContent=spval
+        });
+    </script>
+</body>
+</html>

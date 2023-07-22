@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CGPA CALCULATOR</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <style>
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+div{
+    text-align: center;
+    padding-bottom: 30px;
+}
+    </style>
+</head>
+<body>
+    <div>
+    <span>Your CGPA is {{ cgpa }}</span>
+    <div>
+        <a href="{{url_for('home')}}">Calculate CGPA again</a>
+    </div>
+    </div>
+    
+</body>
+</html>
